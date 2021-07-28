@@ -4,22 +4,26 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Construyendo...'
-                withGradle {
+                // Alternativa con gradlew
+                /*withGradle {
                     sh './gradlew assemble'
-                }
+                }*/
+                sh 'docker build -t hellospring:latest .'
             }
-            post {
+            /*post {
                 success {
                     archiveArtifacts artifacts: 'build/libs/*.jar'
                 }
-            }
+            }*/
         }
         stage('Deploy') {
             steps {
-                 echo 'Desplegando...'
-                            withGradle {
-                                sh './gradlew bootRun'
-                            }
+                echo 'Desplegando...'
+                // Alternativa con gradlew
+                /*withGradle {
+                    sh './gradlew bootRun'
+                }*/
+                sh 'docker-compose up -d'
             }
         }
     }
