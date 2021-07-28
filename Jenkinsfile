@@ -15,9 +15,11 @@ pipeline {
             }
         }
         stage('Deploy') {
-            echo 'Desplegando...'
-            withGradle {
-                sh './gradlew bootRun'
+            steps {
+                 echo 'Desplegando...'
+                            withGradle {
+                                sh './gradlew bootRun'
+                            }
             }
         }
     }
