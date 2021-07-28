@@ -19,5 +19,10 @@ public class HelloSpringApplication {
         return String.format("Hello %s!", name);
     }
 
+    @GetMapping("/")
+    public String principal(){
+        return "Bienvenido a la aplicacion de prueba de Spring";
+    }
+
 }
 
