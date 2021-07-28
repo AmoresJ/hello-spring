@@ -1,0 +1,7 @@
+version: "3.0"
+services:
+  hellospring:
+    image: hellospring:latest
+    build: .
+    ports:
+      - "8081:8081"
