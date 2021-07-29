@@ -8,6 +8,7 @@ pipeline {
                 /*withGradle {
                     sh './gradlew assemble'
                 }*/
+                // Alternativa docker build - docker compose
                 sh 'docker build -t hellospring:latest .'
             }
             /*post {
@@ -23,6 +24,7 @@ pipeline {
                 /*withGradle {
                     sh './gradlew bootRun'
                 }*/
+                // Alternativa docker build - docker compose
                 sh 'docker-compose up -d'
             }
         }
