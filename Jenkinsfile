@@ -3,6 +3,7 @@ pipeline {
     stages {
         stage('Test') {
             steps {
+                sh './gradlew test'
                 junit 'test-results.xml'
             }
         }
