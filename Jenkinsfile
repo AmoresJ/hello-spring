@@ -6,10 +6,10 @@ pipeline {
                 withGradle {
                     sh './gradlew clean test'
                 }
-            } post {
-                always {
-                    junit 'build/test-results/test/*.xml'
-                }
+            }
+        } post {
+            always {
+                junit 'build/test-results/test/*.xml'
             }
         }
         stage('Build') {
