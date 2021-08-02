@@ -1,6 +1,11 @@
 pipeline {
     agent any
     stages {
+        stage('Test') {
+            steps {
+                junit 'test-results.xml'
+            }
+        }
         stage('Build') {
             steps {
                 echo 'Construyendo...'
