@@ -15,7 +15,7 @@ pipeline {
                     sh './gradlew assemble'
                 }*/
                 // Alternativa docker build - docker compose
-                sh 'docker build -t hellospring:latest .'
+                //sh 'docker build -t hellospring:latest .'
             }
             /*post {
                 success {
@@ -31,7 +31,7 @@ pipeline {
                     sh './gradlew bootRun'
                 }*/
                 // Alternativa docker build - docker compose
-                sh 'docker-compose up -d'
+                //sh 'docker-compose up -d'
             }
         }
     }
