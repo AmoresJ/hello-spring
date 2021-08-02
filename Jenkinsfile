@@ -4,7 +4,7 @@ pipeline {
         stage('Test') {
             steps {
                 sh './gradlew test'
-                //junit '**/test-results/*.xml'
+                junit 'build/test-results/test/*.xml'
             }
         }
         stage('Build') {
