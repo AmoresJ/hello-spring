@@ -3,8 +3,13 @@ pipeline {
     stages {
         stage('Test') {
             steps {
-                sh './gradlew clean test'
-                junit 'build/test-results/test/*.xml'
+                withGradle {
+                    sh './gradlew clean test'
+                }
+            } post {
+                always {
+                    junit 'build/test-results/test/*.xml'
+                }
             }
         }
         stage('Build') {
