@@ -3,7 +3,8 @@ package com.example.hellospring;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestParam
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @SpringBootApplication
@@ -22,6 +23,11 @@ public class HelloSpringApplication {
     @GetMapping("/")
     public String principal(){
         return "Bienvenido a la aplicacion de prueba de Spring";
+    }
+
+    @GetMapping("/suma")
+    public @ResponseBody Float suma(@RequestParam(value = "a") Float a, @RequestParam(value = "b") Float b) {
+        return a + b;
     }
 
 }
