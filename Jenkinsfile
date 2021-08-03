@@ -5,7 +5,6 @@ pipeline {
     stages {
         stage('Test') {
             steps {
-                echo 'Testing...'
                 withGradle {
                     sh './gradlew clean test'
                 }
@@ -33,6 +32,31 @@ pipeline {
                                     ]
                     )
                 }
+            }
+        }
+        stage('Build') {
+            steps {
+                sh 'docker build -t hellospring:main-1.0.${BUILD_NUMBER}-${GIT_COMMIT} .'
+            }
+        }
+        stage('Security') {
+            steps {
+                sh 'trivy --format=json --output=trivy-image.json image hellospring:main-1.0.${BUILD_NUMBER}-${GIT_COMMIT}'
+            }
+            post {
+                always {
+                    recordIssues(
+                            tools:
+                                    [
+                                            trivy(pattern: 'trivy-image.json')
+                                    ]
+                    )
+                }
+            }
+        }
+        stage('Deploy') {
+            steps {
+                sh 'docker-compose up -d'
             }
         }
     }
