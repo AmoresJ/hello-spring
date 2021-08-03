@@ -18,7 +18,18 @@ pipeline {
         }
         stage('QA') {
             steps {
-                sh './gradlew check'
+                withGradle {
+                    sh './gradlew check'
+                }
+            }
+            post {
+                always {
+                    recordIssues {
+                        tools: {
+                            pmdParser(pattern: 'build/reports/pmd/*.xml')
+                        }
+                    }
+                }
             }
         }
     }
