@@ -8,6 +8,11 @@ pipeline {
                 }
             }
         }
+        stage('Jacoco') {
+            steps {
+                jacoco()
+            }
+        }
     }
     post {
         always {

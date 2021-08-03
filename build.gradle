@@ -2,6 +2,7 @@ plugins {
     id 'org.springframework.boot' version '2.5.3'
     id 'io.spring.dependency-management' version '1.0.11.RELEASE'
     id 'groovy'
+    id 'jacoco'
 }
 
 group = 'com.example'
@@ -20,4 +21,12 @@ dependencies {
 
 test {
     useJUnitPlatform()
+    finalizedBy jacocoTestReport // Se genera el informe despues de ejecutar las pruebas
+}
+
+jacocoTestReport {
+    dependsOn test // Se ejecuta despues de test
+    reports {
+        xml.required = true
+    }
 }
