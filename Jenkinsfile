@@ -8,15 +8,11 @@ pipeline {
                 }
             }
         }
-        stage('Jacoco') {
-            steps {
-                jacoco()
-            }
-        }
     }
     post {
         always {
             junit 'build/test-results/test/*.xml'
+            jacoco execPattern: 'build/jacoco/*.exec'
         }
     }
 }
