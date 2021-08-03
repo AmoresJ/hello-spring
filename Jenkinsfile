@@ -1,3 +1,4 @@
+#!/usr/bin/env groovy
 pipeline {
     agent any
 
@@ -12,7 +13,7 @@ pipeline {
             post {
                 always {
                     junit 'build/test-results/test/*.xml'
-                    jacoco execPattern:'build/jacoco/*.exec'
+                    jacoco execPattern: 'build/jacoco/*.exec'
                 }
             }
         }
@@ -25,8 +26,9 @@ pipeline {
             post {
                 always {
                     recordIssues {
-                        tools: [
-                            pmdParser(pattern: 'build/reports/pmd/*.xml')
+                        tools:
+                        [
+                                pmdParser(pattern: 'build/reports/pmd/*.xml')
                         ]
                     }
                 }
@@ -34,27 +36,3 @@ pipeline {
         }
     }
 }
-
-
-/*
-pipeline {
-    agent any
-    stages {
-        stage('Test') {
-            steps {
-                withGradle {
-                    sh './gradlew clean test'
-                }
-            }
-            post {
-                always {
-                    junit 'build/test-results/test/*.xml'
-                    jacoco execPattern: 'build/jacoco/*.exec'
-                }
-            }
-        }
-        stage('QA') {
-            sh './gradlew check'
-        }
-    }
-}*/
