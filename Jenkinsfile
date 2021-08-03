@@ -48,7 +48,7 @@ pipeline {
                     recordIssues(
                             tools:
                                     [
-                                            trivy(pattern: 'trivy-image.json')
+                                            trivy(pattern: 'trivy-*.json')
                                     ]
                     )
                 }
