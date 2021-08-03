@@ -1,7 +1,9 @@
 #!/usr/bin/env groovy
 pipeline {
     agent any
-
+    options {
+        ansiColor('xterm')
+    }
     stages {
         stage('Test') {
             steps {
@@ -48,7 +50,7 @@ pipeline {
                     recordIssues(
                             tools:
                                     [
-                                            trivy(pattern: 'trivy-*.json')
+                                            trivy(pattern: '*.json')
                                     ]
                     )
                 }
