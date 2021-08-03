@@ -43,7 +43,7 @@ pipeline {
         }
         stage('Security') {
             steps {
-                sh 'trivy --format=json --output=trivy-image.json image hellospring:main-1.0.${BUILD_NUMBER}-${GIT_COMMIT}'
+                sh 'trivy image --format=json --output=trivy-image.json hellospring:main-1.0.${BUILD_NUMBER}-${GIT_COMMIT}'
             }
             post {
                 always {
