@@ -12,13 +12,29 @@ import static org.assertj.core.api.Assertions.assertThat;
 class HttpRequestTest {
 
     @LocalServerPort
-    public int port;
+    private int port;
 
     @Autowired
-    public TestRestTemplate restTemplate;
+    private TestRestTemplate restTemplate;
 
     @Test
     public void canAdd() throws Exception {
         assertThat(this.restTemplate.getForObject("http://localhost:" + port + "/suma?a=1&b=2", String.class)).isEqualTo("3.0");
+    }
+
+    public int getPort(){
+        return this.port;
+    }
+
+    public TestRestTemplate getRestTemplate () {
+        return this.restTemplate;
+    }
+
+    void setPort(int p) {
+        this.port = p;
+    }
+
+    void setRestTemplate (TestRestTemplate t) {
+        this.restTemplate = t;
     }
 }
