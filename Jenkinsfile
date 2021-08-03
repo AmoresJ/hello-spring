@@ -11,19 +11,14 @@ pipeline {
             }
             post {
                 always {
-                    junit 'build/test-results/test/TEST-*.xml'
+                    junit 'build/test-results/test/*.xml'
                     jacoco execPattern:'build/jacoco/*.exec'
                 }
             }
         }
-        stage('Build') {
+        stage('QA') {
             steps {
-                echo 'Building...'
-            }
-        }
-        stage('Deploy') {
-            steps {
-                echo 'Deploying...'
+                sh './gradlew check'
             }
         }
     }
