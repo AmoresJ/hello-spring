@@ -1,5 +1,6 @@
 pipeline {
     agent any
+
     stages {
         stage('Test') {
             steps {
@@ -10,7 +11,7 @@ pipeline {
             post {
                 always {
                     junit 'build/test-results/test/*.xml'
-                    jacoco execPattern: 'build/jacoco/*.exec'
+                    jacoco execPattern:'build/jacoco/*.exec'
                 }
             }
         }
