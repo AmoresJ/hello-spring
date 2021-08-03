@@ -12,10 +12,10 @@ import static org.assertj.core.api.Assertions.assertThat;
 class HttpRequestTest {
 
     @LocalServerPort
-    private int port;
+    public int port;
 
     @Autowired
-    private TestRestTemplate restTemplate;
+    public TestRestTemplate restTemplate;
 
     @Test
     public void canAdd() throws Exception {
