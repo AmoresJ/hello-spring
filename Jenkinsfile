@@ -25,12 +25,12 @@ pipeline {
             }
             post {
                 always {
-                    recordIssues {
-                        tools:
-                        [
-                                pmdParser(pattern: 'build/reports/pmd/*.xml')
-                        ]
-                    }
+                    recordIssues(
+                            tools:
+                                    [
+                                            pmdParser(pattern: 'build/reports/pmd/*.xml')
+                                    ]
+                    )
                 }
             }
         }
