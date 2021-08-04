@@ -19,6 +19,7 @@ pipeline {
             }
         }
         stage('SonarQube analysis') {
+            when { expression { false } }
             steps {
                 withSonarQubeEnv('SonarQube local') { // Will pick the global server connection you have configured
                     sh './gradlew sonarqube'
