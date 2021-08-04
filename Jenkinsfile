@@ -61,6 +61,11 @@ pipeline {
                 }
             }
         }
+        stage('SonarQube analysis') {
+            withSonarQubeEnv() { // Will pick the global server connection you have configured
+                sh './gradlew sonarqube'
+            }
+        }
         stage('Deploy') {
             steps {
                 sh 'docker-compose up -d'
