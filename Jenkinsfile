@@ -29,6 +29,7 @@ pipeline {
             steps {
                 withGradle {
                     sh './gradlew check'
+                    sh './gradlew pitest'
                 }
             }
             post {

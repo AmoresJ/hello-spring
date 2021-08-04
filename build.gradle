@@ -39,6 +39,10 @@ spotbugs {
     ignoreFailures = true
 }
 
+pmd {
+    ignoreFailures = true
+}
+
 sonarqube {
     properties {
         property "sonar.projectKey", "AmoresJ_hello-spring_AXsP_oBQhhkj9YIKyU7l"
