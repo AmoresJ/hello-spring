@@ -39,7 +39,7 @@ pipeline {
                                     [
                                             pmdParser(pattern: 'build/reports/pmd/*.xml'),
                                             spotBugs(pattern: 'build/reports/spotbugs/*.xml', useRankAsPriority: true),
-                                            pit(pattern: 'build/reports/pitest/*')
+                                            pit(pattern: 'build/reports/pitest/*.xml')
                                     ]
                     )
                 }
