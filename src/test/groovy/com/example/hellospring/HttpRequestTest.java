@@ -18,7 +18,7 @@ class HttpRequestTest {
     private TestRestTemplate restTemplate;
 
     @Test
-    public void canAdd() throws Exception {
+    void canAdd() throws Exception {
         assertThat(this.restTemplate.getForObject("http://localhost:" + port + "/suma?a=1&b=2", String.class)).isEqualTo("3.0");
     }
 
