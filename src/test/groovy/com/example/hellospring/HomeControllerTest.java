@@ -22,11 +22,11 @@ class HomeControllerTest {
         assertThat(this.testRestTemplate.getForObject("http://localhost:" + this.port + "/hola", String.class)).isEqualTo("Hola holita pruebecita");
     }
 
-    public int getPort(){
+    public int getPort() {
         return this.port;
     }
 
-    public TestRestTemplate getRestTemplate () {
+    public TestRestTemplate getTestRestTemplate() {
         return this.testRestTemplate;
     }
 
@@ -34,7 +34,7 @@ class HomeControllerTest {
         this.port = p;
     }
 
-    void setRestTemplate (TestRestTemplate t) {
+    void setTestRestTemplate(TestRestTemplate t) {
         this.testRestTemplate = t;
     }
 }
