@@ -8,7 +8,7 @@ pipeline {
         stage('Test') {
             steps {
                 withGradle {
-                    sh './gradlew clean test'
+                    sh './gradlew clean test pitest'
                 }
             }
             post {
@@ -29,7 +29,6 @@ pipeline {
             steps {
                 withGradle {
                     sh './gradlew check'
-                    sh './gradlew pitest'
                 }
             }
             post {
@@ -39,7 +38,7 @@ pipeline {
                                     [
                                             pmdParser(pattern: 'build/reports/pmd/*.xml'),
                                             spotBugs(pattern: 'build/reports/spotbugs/*.xml', useRankAsPriority: true),
-                                            pit(pattern: 'build/reports/pitest/**/*.xml')
+                                            pit(enabledForFailure: true, pattern: 'build/reports/pitest/**/*.xml')
                                     ]
                     )
                 }
