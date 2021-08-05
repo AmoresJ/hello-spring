@@ -22,7 +22,7 @@ pipeline {
             failFast true
             parallel {
                 stage('SonarQube analysis') {
-                    when { expression { true } }
+                    when { expression { false } }
                     steps {
                         withSonarQubeEnv('SonarQube local') {
                             // Will pick the global server connection you have configured
