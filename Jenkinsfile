@@ -18,30 +18,35 @@ pipeline {
                 }
             }
         }
-        stage('SonarQube analysis') {
-            when { expression { false } }
-            steps {
-                withSonarQubeEnv('SonarQube local') { // Will pick the global server connection you have configured
-                    sh './gradlew sonarqube'
+        stage('Analysis') {
+            parallel {
+                stage('SonarQube analysis') {
+                    when { expression { true } }
+                    steps {
+                        withSonarQubeEnv('SonarQube local') {
+                            // Will pick the global server connection you have configured
+                            sh './gradlew sonarqube'
+                        }
+                    }
                 }
-            }
-        }
-        stage('QA') {
-            steps {
-                withGradle {
-                    sh './gradlew check'
-                }
-            }
-            post {
-                always {
-                    recordIssues(
-                            tools:
-                                    [
-                                            pmdParser(pattern: 'build/reports/pmd/*.xml'),
-                                            spotBugs(pattern: 'build/reports/spotbugs/*.xml', useRankAsPriority: true),
-                                            pit(enabledForFailure: true, pattern: 'build/reports/pitest/**/*.xml')
-                                    ]
-                    )
+                stage('QA') {
+                    steps {
+                        withGradle {
+                            sh './gradlew check'
+                        }
+                    }
+                    post {
+                        always {
+                            recordIssues(
+                                    tools:
+                                            [
+                                                    pmdParser(pattern: 'build/reports/pmd/*.xml'),
+                                                    spotBugs(pattern: 'build/reports/spotbugs/*.xml', useRankAsPriority: true),
+                                                    pit(enabledForFailure: true, pattern: 'build/reports/pitest/**/*.xml')
+                                            ]
+                            )
+                        }
+                    }
                 }
             }
         }
