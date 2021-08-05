@@ -19,8 +19,8 @@ pipeline {
             }
         }
         stage('Analysis') {
+            failFast true
             parallel {
-                failFast true
                 stage('SonarQube analysis') {
                     when { expression { true } }
                     steps {
