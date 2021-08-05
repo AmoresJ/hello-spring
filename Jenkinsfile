@@ -74,7 +74,7 @@ pipeline {
         stage('Deploy') {
             steps {
                 //sh 'docker-compose up -d'
-                withDockerRegistry(credentialsId: 'gitlab-registry', url: '10.250.5.19:5050') {
+                withDockerRegistry(credentialsId: 'gitlab-registry', url: 'http://10.250.5.19:5050') {
                     sh 'docker push 10.250.5.19:5050/amoresj/hello-spring/hellospring:main-1.0.${BUILD_NUMBER}-${GIT_COMMIT}'
                 }
             }
