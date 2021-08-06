@@ -80,6 +80,7 @@ pipeline {
         }
         stage('Deploy') {
             steps {
+                echo 'Despliegue...'
                 //sh 'docker-compose up -d'
             }
         }
