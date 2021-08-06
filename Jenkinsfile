@@ -53,12 +53,12 @@ pipeline {
         }
         stage('Build') {
             steps {
-                sh 'docker build -t 10.250.5.19:5050/amoresj/hello-spring/hellospring:main-1.0.${BUILD_NUMBER}-${GIT_COMMIT} .'
+                sh 'docker build -t 10.250.5.19:5050/amoresj/hello-spring:main-1.0.${BUILD_NUMBER}-${GIT_COMMIT} .'
             }
         }
         stage('Security') {
             steps {
-                sh 'trivy image --format=json --output=trivy-image.json 10.250.5.19:5050/amoresj/hello-spring/hellospring:main-1.0.${BUILD_NUMBER}-${GIT_COMMIT}'
+                sh 'trivy image --format=json --output=trivy-image.json 10.250.5.19:5050/amoresj/hello-spring:main-1.0.${BUILD_NUMBER}-${GIT_COMMIT}'
             }
             post {
                 always {
@@ -75,7 +75,7 @@ pipeline {
             steps {
                 //sh 'docker-compose up -d'
                 withDockerRegistry(credentialsId: 'gitlab-registry', url: 'http://10.250.5.19:5050') {
-                    sh 'docker push 10.250.5.19:5050/amoresj/hello-spring/hellospring:main-1.0.${BUILD_NUMBER}-${GIT_COMMIT}'
+                    sh 'docker push 10.250.5.19:5050/amoresj/hello-spring:main-1.0.${BUILD_NUMBER}-${GIT_COMMIT}'
                 }
             }
         }
