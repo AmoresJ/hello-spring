@@ -85,7 +85,7 @@ pipeline {
                 echo 'Despliegue...'
                 sshagent(['Gitlab_user_app']) {
                     sh 'docker-compose pull'
-                    sh 'docker-compuse up -d'
+                    sh 'docker-compose up -d'
                 }
             }
         }
