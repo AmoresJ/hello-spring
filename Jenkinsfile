@@ -84,8 +84,7 @@ pipeline {
             steps {
                 echo 'Despliegue...'
                 sshagent(['Gitlab_user_app']) {
-                    sh 'docker-compose pull'
-                    sh 'docker-compose up -d'
+                    ssh app@10.250.5.19 'cd hello-spring && docker-compose pull && docker-compose up -d'
                 }
             }
         }
