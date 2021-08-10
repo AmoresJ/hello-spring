@@ -83,7 +83,10 @@ pipeline {
         stage('Deploy') {
             steps {
                 echo 'Despliegue...'
-                //sh 'docker-compose up -d'
+                sshagent(['Gitlab_user_app']) {
+                    sh 'docker-compose pull'
+                    sh 'docker-compuse up -d'
+                }
             }
         }
     }
